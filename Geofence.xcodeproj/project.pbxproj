@@ -12,9 +12,9 @@
 		E8F5190E260B6E410021668E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8F5190C260B6E410021668E /* Main.storyboard */; };
 		E8F51910260B6E430021668E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E8F5190F260B6E430021668E /* Assets.xcassets */; };
 		E8F51913260B6E430021668E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8F51911260B6E430021668E /* LaunchScreen.storyboard */; };
-		E8F5191E260B6E430021668E /* GeofenceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F5191D260B6E430021668E /* GeofenceTests.swift */; };
 		E8F51929260B6E430021668E /* GeofenceUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F51928260B6E430021668E /* GeofenceUITests.swift */; };
 		E8F51945260B75670021668E /* GeofenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F51944260B75670021668E /* GeofenceViewController.swift */; };
+		E8F5194B260B82830021668E /* GeofenceViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F5194A260B82830021668E /* GeofenceViewControllerTests.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,12 +43,12 @@
 		E8F51912260B6E430021668E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E8F51914260B6E430021668E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8F51919260B6E430021668E /* GeofenceTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GeofenceTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		E8F5191D260B6E430021668E /* GeofenceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeofenceTests.swift; sourceTree = "<group>"; };
 		E8F5191F260B6E430021668E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8F51924260B6E430021668E /* GeofenceUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = GeofenceUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8F51928260B6E430021668E /* GeofenceUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeofenceUITests.swift; sourceTree = "<group>"; };
 		E8F5192A260B6E430021668E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E8F51944260B75670021668E /* GeofenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeofenceViewController.swift; sourceTree = "<group>"; };
+		E8F5194A260B82830021668E /* GeofenceViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeofenceViewControllerTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -113,8 +113,8 @@
 		E8F5191C260B6E430021668E /* GeofenceTests */ = {
 			isa = PBXGroup;
 			children = (
-				E8F5191D260B6E430021668E /* GeofenceTests.swift */,
 				E8F5191F260B6E430021668E /* Info.plist */,
+				E8F5194A260B82830021668E /* GeofenceViewControllerTests.swift */,
 			);
 			path = GeofenceTests;
 			sourceTree = "<group>";
@@ -198,6 +198,7 @@
 					};
 					E8F51918260B6E430021668E = {
 						CreatedOnToolsVersion = 12.2;
+						LastSwiftMigration = 1220;
 						TestTargetID = E8F51902260B6E410021668E;
 					};
 					E8F51923260B6E430021668E = {
@@ -268,7 +269,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8F5191E260B6E430021668E /* GeofenceTests.swift in Sources */,
+				E8F5194B260B82830021668E /* GeofenceViewControllerTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -474,6 +475,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KKPXCANAE4;
 				INFOPLIST_FILE = GeofenceTests/Info.plist;
@@ -485,6 +487,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = my.com.ykpoh.GeofenceTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Geofence.app/Geofence";
@@ -496,6 +499,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = KKPXCANAE4;
 				INFOPLIST_FILE = GeofenceTests/Info.plist;
