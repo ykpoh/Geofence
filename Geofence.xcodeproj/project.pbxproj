@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E85A4E3D260CC09100C2FAA1 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85A4E3C260CC09100C2FAA1 /* Utilities.swift */; };
 		E8F51907260B6E410021668E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F51906260B6E410021668E /* AppDelegate.swift */; };
 		E8F51909260B6E410021668E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F51908260B6E410021668E /* SceneDelegate.swift */; };
 		E8F5190E260B6E410021668E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8F5190C260B6E410021668E /* Main.storyboard */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E85A4E3C260CC09100C2FAA1 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		E8F51903260B6E410021668E /* Geofence.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Geofence.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8F51906260B6E410021668E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E8F51908260B6E410021668E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 			children = (
 				E8F5195E260B83C10021668E /* UIViewController+StoryboardCreatable.swift */,
 				E8F51966260B83E50021668E /* StoryboardCreatable.swift */,
+				E85A4E3C260CC09100C2FAA1 /* Utilities.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E85A4E3D260CC09100C2FAA1 /* Utilities.swift in Sources */,
 				E8F51907260B6E410021668E /* AppDelegate.swift in Sources */,
 				E8F5195F260B83C10021668E /* UIViewController+StoryboardCreatable.swift in Sources */,
 				E8F51909260B6E410021668E /* SceneDelegate.swift in Sources */,

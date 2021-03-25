@@ -28,7 +28,7 @@
         <!--Geofence-->
         <scene sceneID="qey-rR-fti">
             <objects>
-                <viewController id="0Lf-PA-mQN" customClass="GeofenceViewController" customModule="Geofence" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="GeofenceViewController" id="0Lf-PA-mQN" customClass="GeofenceViewController" customModule="Geofence" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="sie-nh-t0c">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -46,7 +46,13 @@
                             <constraint firstAttribute="trailing" secondItem="fqo-CY-NbY" secondAttribute="trailing" id="uwH-gC-Jsg"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Geofence" id="Qwf-bF-KvY"/>
+                    <navigationItem key="navigationItem" title="Geofence" id="Qwf-bF-KvY">
+                        <barButtonItem key="leftBarButtonItem" title="Item" id="Iy0-wK-Pn4"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="LAs-rf-oxl"/>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="mapView" destination="fqo-CY-NbY" id="fMB-Wk-t03"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="nku-sr-att" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
