@@ -124,6 +124,7 @@
 				E8872200260F344200E11FC7 /* Geofence.entitlements */,
 				E8F51944260B75670021668E /* GeofenceViewController.swift */,
 				E8D20BED260EE44C0060A3C2 /* AddGeofenceViewController.swift */,
+				E8D20BE8260EE0630060A3C2 /* Geotification.swift */,
 			);
 			path = Geofence;
 			sourceTree = "<group>";
@@ -152,7 +153,6 @@
 				E8F5195E260B83C10021668E /* UIViewController+StoryboardCreatable.swift */,
 				E8F51966260B83E50021668E /* StoryboardCreatable.swift */,
 				E85A4E3C260CC09100C2FAA1 /* Utilities.swift */,
-				E8D20BE8260EE0630060A3C2 /* Geotification.swift */,
 				E8D20C02260F1EF90060A3C2 /* NetworkCheck.swift */,
 				E8D20C08260F27920060A3C2 /* SSID.swift */,
 			);
