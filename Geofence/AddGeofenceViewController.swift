@@ -25,6 +25,7 @@ class AddGeofenceViewController: UITableViewController {
         super.viewDidLoad()
         navigationItem.rightBarButtonItems = [addButton, zoomButton]
         addButton.isEnabled = false
+        tableView.backgroundColor = traitCollection.userInterfaceStyle == .dark ? UIColor("#1C1C1E") : .white
     }
     
     @IBAction func textFieldEditingChanged(sender: UITextField) {
