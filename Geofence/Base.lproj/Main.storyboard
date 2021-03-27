@@ -51,7 +51,7 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Geofence" id="Qwf-bF-KvY">
-                        <barButtonItem key="leftBarButtonItem" title="Item" image="location.fill.viewfinder" catalog="system" id="Iy0-wK-Pn4">
+                        <barButtonItem key="leftBarButtonItem" image="location.fill.viewfinder" catalog="system" id="Iy0-wK-Pn4">
                             <connections>
                                 <action selector="zoomToCurrentLocationWithSender:" destination="0Lf-PA-mQN" id="oMZ-xO-i0T"/>
                             </connections>
