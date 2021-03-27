@@ -17,7 +17,6 @@ class Geotification: NSObject, Codable, MKAnnotation {
     var coordinate: CLLocationCoordinate2D
     var radius: CLLocationDistance
     var identifier: String
-    var note: String
     var wifiName: String
     
     var title: String? {
@@ -32,22 +31,17 @@ class Geotification: NSObject, Codable, MKAnnotation {
         formatter.unitStyle = .short
         formatter.unitOptions = .naturalScale
         let radiusString = formatter.string(from: Measurement(value: radius, unit: UnitLength.meters))
-        var message = "Radius: \(radiusString)"
-        if !note.isEmpty {
-            message += ", note: \(note)"
-        }
-        return message
+        return "Radius: \(radiusString)"
     }
     
     func clampRadius(maxRadius: CLLocationDegrees) {
         radius = min(radius, maxRadius)
     }
     
-    init(coordinate: CLLocationCoordinate2D, radius: CLLocationDistance, identifier: String, note: String, wifiName: String) {
+    init(coordinate: CLLocationCoordinate2D, radius: CLLocationDistance, identifier: String, wifiName: String) {
         self.coordinate = coordinate
         self.radius = radius
         self.identifier = identifier
-        self.note = note
         self.wifiName = wifiName
     }
     
@@ -59,7 +53,6 @@ class Geotification: NSObject, Codable, MKAnnotation {
         coordinate = CLLocationCoordinate2DMake(latitude, longitude)
         radius = try values.decode(Double.self, forKey: .radius)
         identifier = try values.decode(String.self, forKey: .identifier)
-        note = try values.decode(String.self, forKey: .note)
         wifiName = try  values.decode(String.self, forKey: .wifiName)
     }
     
@@ -69,19 +62,28 @@ class Geotification: NSObject, Codable, MKAnnotation {
         try container.encode(coordinate.longitude, forKey: .longitude)
         try container.encode(radius, forKey: .radius)
         try container.encode(identifier, forKey: .identifier)
-        try container.encode(note, forKey: .note)
         try container.encode(wifiName, forKey: .wifiName)
     }
 }
 
 extension Geotification {
-    public class func allGeotifications() -> [Geotification] {
+    public class func loadGeotifications() -> [Geotification] {
         guard let savedData = UserDefaults.standard.data(forKey: PreferencesKeys.savedItems.rawValue) else { return [] }
         let decoder = JSONDecoder()
         if let savedGeotifications = try? decoder.decode(Array.self, from: savedData) as [Geotification] {
             return savedGeotifications
         }
         return []
+    }
+    
+    public class func saveGeotifications(_ geotifications: [Geotification]) {
+        let encoder = JSONEncoder()
+        do {
+            let data = try encoder.encode(geotifications)
+            UserDefaults.standard.set(data, forKey: PreferencesKeys.savedItems.rawValue)
+        } catch {
+            print("error encoding geotifications")
+        }
     }
 }
 

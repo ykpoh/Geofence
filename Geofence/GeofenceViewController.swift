@@ -8,15 +8,22 @@
 import Foundation
 import UIKit
 import MapKit
+import Network
 
 enum PreferencesKeys: String {
   case savedItems
 }
 
-class GeofenceViewController: UIViewController {
+class GeofenceViewController: UIViewController, NetworkCheckObserver {
     @IBOutlet weak var mapView: MKMapView!
-    var geotifications: [Geotification] = []
+    var geotifications: [Geotification] = [] {
+        didSet {
+            updateStatus()
+        }
+    }
     lazy var locationManager = CLLocationManager()
+    lazy var networkCheck = NetworkCheck.sharedInstance()
+    var isWithinRegion = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,6 +31,7 @@ class GeofenceViewController: UIViewController {
         locationManager.delegate = self
         locationManager.requestAlwaysAuthorization()
         loadAllGeotifications()
+        networkCheck.addObserver(observer: self)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -34,6 +42,12 @@ class GeofenceViewController: UIViewController {
         }
     }
     
+    func statusDidChange(status: NWPath.Status) {
+        if status == .satisfied {
+            updateStatus()
+        }
+    }
+    
     @IBAction func zoomToCurrentLocation(sender: AnyObject) {
       mapView.zoomToLocation(mapView.userLocation.location)
     }
@@ -41,18 +55,12 @@ class GeofenceViewController: UIViewController {
     // MARK: Loading and saving functions
     func loadAllGeotifications() {
         geotifications.removeAll()
-        let allGeotifications = Geotification.allGeotifications()
+        let allGeotifications = Geotification.loadGeotifications()
         allGeotifications.forEach { add($0) }
     }
     
     func saveAllGeotifications() {
-        let encoder = JSONEncoder()
-        do {
-            let data = try encoder.encode(geotifications)
-            UserDefaults.standard.set(data, forKey: PreferencesKeys.savedItems.rawValue)
-        } catch {
-            showToast("error encoding geotifications")
-        }
+        Geotification.saveGeotifications(geotifications)
     }
     
     func startMonitoring(geotification: Geotification) {
@@ -96,8 +104,33 @@ class GeofenceViewController: UIViewController {
     }
     
     func updateGeotificationsCount() {
-        title = "Geotifications: \(geotifications.count)"
         navigationItem.rightBarButtonItem?.isEnabled = (geotifications.count < 20)
+    }
+    
+    func updateStatus() {
+        guard !geotifications.isEmpty else {
+            updateNavigationBar(title: "Geofence", color: UIColor("#00B0FE"))
+            return
+        }
+        
+        var isConnectedToSavedWifi = false
+        
+        if let ssid = SSID.getWiFiSSID(), geotifications.contains(where: { $0.wifiName == ssid }) {
+            isConnectedToSavedWifi = true
+        }
+        
+        if isConnectedToSavedWifi || isWithinRegion {
+            updateNavigationBar(title: "INSIDE", color: .green)
+        } else {
+            updateNavigationBar(title: "OUTSIDE", color: .red)
+        }
+        print("isConnectedToSavedWifi: \(isConnectedToSavedWifi)")
+        print("isWithinRegion: \(isWithinRegion)")
+    }
+    
+    func updateNavigationBar(title: String, color: UIColor?) {
+        self.title = title
+        navigationController?.navigationBar.barTintColor = color
     }
     
     // MARK: Map overlay functions
@@ -149,6 +182,26 @@ extension GeofenceViewController: CLLocationManagerDelegate {
         Geofence permission to access the device location.
         """
             showAlert(withTitle: "Warning", message: message)
+        }
+    }
+    
+    func locationManager(
+        _ manager: CLLocationManager,
+        didEnterRegion region: CLRegion
+    ) {
+        if region is CLCircularRegion {
+            isWithinRegion = true
+            updateStatus()
+        }
+    }
+    
+    func locationManager(
+        _ manager: CLLocationManager,
+        didExitRegion region: CLRegion
+    ) {
+        if region is CLCircularRegion {
+            isWithinRegion = false
+            updateStatus()
         }
     }
     
