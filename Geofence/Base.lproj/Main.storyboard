@@ -47,7 +47,11 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Geofence" id="Qwf-bF-KvY">
-                        <barButtonItem key="leftBarButtonItem" title="Item" id="Iy0-wK-Pn4"/>
+                        <barButtonItem key="leftBarButtonItem" title="Item" image="location.viewfinder" catalog="system" id="Iy0-wK-Pn4">
+                            <connections>
+                                <action selector="zoomToCurrentLocationWithSender:" destination="0Lf-PA-mQN" id="oMZ-xO-i0T"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="LAs-rf-oxl"/>
                     </navigationItem>
                     <connections>
@@ -60,6 +64,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="location.viewfinder" catalog="system" width="128" height="115"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

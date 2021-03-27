@@ -24,6 +24,10 @@ class GeofenceViewController: UIViewController {
         // 3
 //        loadAllGeotifications()
     }
+    
+    @IBAction func zoomToCurrentLocation(sender: AnyObject) {
+      mapView.zoomToLocation(mapView.userLocation.location)
+    }
 }
 
 extension GeofenceViewController: CLLocationManagerDelegate {
