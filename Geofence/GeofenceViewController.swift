@@ -123,8 +123,6 @@ class GeofenceViewController: UIViewController, NetworkCheckObserver {
         } else {
             updateNavigationBar(title: "OUTSIDE", color: .red)
         }
-        print("isConnectedToSavedWifi: \(isConnectedToSavedWifi)")
-        print("isWithinRegion: \(isWithinRegion)")
     }
     
     func updateNavigationBar(title: String, color: UIColor?) {
