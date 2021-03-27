@@ -97,7 +97,7 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                         <view key="tableFooterView" contentMode="scaleToFill" id="Vs0-Tw-uVP">
-                            <rect key="frame" x="0.0" y="431" width="414" height="0.0"/>
+                            <rect key="frame" x="0.0" y="387" width="414" height="0.0"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         </view>
@@ -146,7 +146,7 @@
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Network name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HfG-E3-ZAV">
                                                     <rect key="frame" x="109" y="17" width="270" height="13"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
+                                                    <textInputTraits key="textInputTraits"/>
                                                     <connections>
                                                         <action selector="textFieldEditingChangedWithSender:" destination="Det-6z-rxw" eventType="editingChanged" id="Exq-DI-lhG"/>
                                                     </connections>
@@ -200,38 +200,6 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="none" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" id="CSV-26-YJj">
-                                        <rect key="frame" x="0.0" y="359" width="414" height="44"/>
-                                        <autoresizingMask key="autoresizingMask"/>
-                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CSV-26-YJj" id="tQY-e7-Wxa">
-                                            <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                            <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Reminder note to be shown" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="LDw-Kt-LUG">
-                                                    <rect key="frame" x="109" y="16" width="270" height="19.5"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
-                                                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                    <connections>
-                                                        <action selector="textFieldEditingChangedWithSender:" destination="Det-6z-rxw" eventType="editingChanged" id="Gds-Wl-WgN"/>
-                                                    </connections>
-                                                </textField>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Note" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jOf-Lm-vRU">
-                                                    <rect key="frame" x="26" y="16" width="35.5" height="13"/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                                    <color key="textColor" systemColor="darkTextColor"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
-                                            </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="trailingMargin" secondItem="LDw-Kt-LUG" secondAttribute="trailing" constant="15" id="4Ul-ov-abD"/>
-                                                <constraint firstItem="LDw-Kt-LUG" firstAttribute="top" secondItem="tQY-e7-Wxa" secondAttribute="topMargin" constant="5" id="S7m-H6-0Eu"/>
-                                                <constraint firstAttribute="bottomMargin" secondItem="jOf-Lm-vRU" secondAttribute="bottom" constant="4" id="ahe-we-yku"/>
-                                                <constraint firstItem="jOf-Lm-vRU" firstAttribute="top" secondItem="tQY-e7-Wxa" secondAttribute="topMargin" constant="5" id="i3A-b7-00R"/>
-                                                <constraint firstItem="LDw-Kt-LUG" firstAttribute="leading" secondItem="jOf-Lm-vRU" secondAttribute="trailing" constant="47.5" id="oba-JG-655"/>
-                                                <constraint firstItem="jOf-Lm-vRU" firstAttribute="leading" secondItem="tQY-e7-Wxa" secondAttribute="leadingMargin" constant="6" id="zPR-VO-2bV"/>
-                                            </constraints>
-                                        </tableViewCellContentView>
-                                    </tableViewCell>
                                 </cells>
                             </tableViewSection>
                         </sections>
@@ -258,7 +226,6 @@
                     <connections>
                         <outlet property="addButton" destination="8dW-pz-a7k" id="BOC-Xt-phq"/>
                         <outlet property="mapView" destination="Zeg-qR-SDP" id="IKN-h4-baH"/>
-                        <outlet property="noteTextField" destination="LDw-Kt-LUG" id="YRI-fS-dct"/>
                         <outlet property="radiusTextField" destination="4xY-C5-1Mu" id="RvH-ID-bax"/>
                         <outlet property="wifiNameTextField" destination="HfG-E3-ZAV" id="MH0-Qd-dAX"/>
                         <outlet property="zoomButton" destination="Yun-JN-WS4" id="nRt-Km-41R"/>
@@ -272,9 +239,6 @@
     <resources>
         <image name="location.fill.viewfinder" catalog="system" width="128" height="115"/>
         <image name="mappin" catalog="system" width="105" height="128"/>
-        <systemColor name="darkTextColor">
-            <color white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

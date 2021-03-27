@@ -17,7 +17,6 @@ class AddGeofenceViewController: UITableViewController {
     @IBOutlet var zoomButton: UIBarButtonItem!
     @IBOutlet weak var wifiNameTextField: UITextField!
     @IBOutlet weak var radiusTextField: UITextField!
-    @IBOutlet weak var noteTextField: UITextField!
     @IBOutlet weak var mapView: MKMapView!
     
     weak var delegate: AddGeofenceViewControllerDelegate?
@@ -31,8 +30,7 @@ class AddGeofenceViewController: UITableViewController {
     @IBAction func textFieldEditingChanged(sender: UITextField) {
         let wifiSet = !(wifiNameTextField.text?.isEmpty ?? true)
         let radiusSet = !(radiusTextField.text?.isEmpty ?? true)
-        let noteSet = !(noteTextField.text?.isEmpty ?? true)
-        addButton.isEnabled = wifiSet && radiusSet && noteSet
+        addButton.isEnabled = wifiSet && radiusSet
     }
     
     @IBAction func onCancel(sender: AnyObject) {
@@ -44,12 +42,10 @@ class AddGeofenceViewController: UITableViewController {
         let wifiName = wifiNameTextField.text ?? ""
         let radius = Double(radiusTextField.text ?? "") ?? 0
         let identifier = NSUUID().uuidString
-        let note = noteTextField.text ?? ""
         let geotification = Geotification(
             coordinate: coordinate,
             radius: radius,
             identifier: identifier,
-            note: note,
             wifiName: wifiName)
         delegate?.addGeofenceViewController(self, didAddGeofence: geotification)
     }
