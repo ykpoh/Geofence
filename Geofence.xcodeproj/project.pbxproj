@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		E85A4E3D260CC09100C2FAA1 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85A4E3C260CC09100C2FAA1 /* Utilities.swift */; };
+		E8D20BE9260EE0630060A3C2 /* Geotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D20BE8260EE0630060A3C2 /* Geotification.swift */; };
+		E8D20BEE260EE44C0060A3C2 /* AddGeofenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D20BED260EE44C0060A3C2 /* AddGeofenceViewController.swift */; };
 		E8F51907260B6E410021668E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F51906260B6E410021668E /* AppDelegate.swift */; };
 		E8F51909260B6E410021668E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F51908260B6E410021668E /* SceneDelegate.swift */; };
 		E8F5190E260B6E410021668E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E8F5190C260B6E410021668E /* Main.storyboard */; };
@@ -39,6 +41,8 @@
 
 /* Begin PBXFileReference section */
 		E85A4E3C260CC09100C2FAA1 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		E8D20BE8260EE0630060A3C2 /* Geotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geotification.swift; sourceTree = "<group>"; };
+		E8D20BED260EE44C0060A3C2 /* AddGeofenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGeofenceViewController.swift; sourceTree = "<group>"; };
 		E8F51903260B6E410021668E /* Geofence.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Geofence.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E8F51906260B6E410021668E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E8F51908260B6E410021668E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -113,6 +117,7 @@
 				E8F51911260B6E430021668E /* LaunchScreen.storyboard */,
 				E8F51914260B6E430021668E /* Info.plist */,
 				E8F51944260B75670021668E /* GeofenceViewController.swift */,
+				E8D20BED260EE44C0060A3C2 /* AddGeofenceViewController.swift */,
 			);
 			path = Geofence;
 			sourceTree = "<group>";
@@ -141,6 +146,7 @@
 				E8F5195E260B83C10021668E /* UIViewController+StoryboardCreatable.swift */,
 				E8F51966260B83E50021668E /* StoryboardCreatable.swift */,
 				E85A4E3C260CC09100C2FAA1 /* Utilities.swift */,
+				E8D20BE8260EE0630060A3C2 /* Geotification.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -279,8 +285,10 @@
 				E85A4E3D260CC09100C2FAA1 /* Utilities.swift in Sources */,
 				E8F51907260B6E410021668E /* AppDelegate.swift in Sources */,
 				E8F5195F260B83C10021668E /* UIViewController+StoryboardCreatable.swift in Sources */,
+				E8D20BE9260EE0630060A3C2 /* Geotification.swift in Sources */,
 				E8F51909260B6E410021668E /* SceneDelegate.swift in Sources */,
 				E8F51967260B83E60021668E /* StoryboardCreatable.swift in Sources */,
+				E8D20BEE260EE44C0060A3C2 /* AddGeofenceViewController.swift in Sources */,
 				E8F51945260B75670021668E /* GeofenceViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
