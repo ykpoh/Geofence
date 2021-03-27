@@ -143,7 +143,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Network name" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HfG-E3-ZAV">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Network name (case sensitive)" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HfG-E3-ZAV">
                                                     <rect key="frame" x="109" y="17" width="270" height="13"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                                     <textInputTraits key="textInputTraits"/>

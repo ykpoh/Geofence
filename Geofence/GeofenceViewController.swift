@@ -24,6 +24,7 @@ class GeofenceViewController: UIViewController, NetworkCheckObserver {
     lazy var locationManager = CLLocationManager()
     lazy var networkCheck = NetworkCheck.sharedInstance()
     var isWithinRegion = false
+    var isConnectedToSavedWifi = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -43,9 +44,7 @@ class GeofenceViewController: UIViewController, NetworkCheckObserver {
     }
     
     func statusDidChange(status: NWPath.Status) {
-        if status == .satisfied {
-            updateStatus()
-        }
+        updateStatus()
     }
     
     @IBAction func zoomToCurrentLocation(sender: AnyObject) {
@@ -113,10 +112,10 @@ class GeofenceViewController: UIViewController, NetworkCheckObserver {
             return
         }
         
-        var isConnectedToSavedWifi = false
-        
         if let ssid = SSID.getWiFiSSID(), geotifications.contains(where: { $0.wifiName == ssid }) {
             isConnectedToSavedWifi = true
+        } else {
+            isConnectedToSavedWifi = false
         }
         
         if isConnectedToSavedWifi || isWithinRegion {
