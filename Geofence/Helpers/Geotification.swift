@@ -10,11 +10,6 @@ import MapKit
 import CoreLocation
 
 class Geotification: NSObject, Codable, MKAnnotation {
-    enum EventType: String {
-        case onEntry = "On Entry"
-        case onExit = "On Exit"
-    }
-    
     enum CodingKeys: String, CodingKey {
         case latitude, longitude, radius, identifier, note, wifiName
     }
@@ -26,10 +21,10 @@ class Geotification: NSObject, Codable, MKAnnotation {
     var wifiName: String
     
     var title: String? {
-        if note.isEmpty {
-            return "No Note"
+        if wifiName.isEmpty {
+            return "No Wifi"
         }
-        return note
+        return "Wifi: \(wifiName)"
     }
     
     var subtitle: String? {
@@ -37,7 +32,11 @@ class Geotification: NSObject, Codable, MKAnnotation {
         formatter.unitStyle = .short
         formatter.unitOptions = .naturalScale
         let radiusString = formatter.string(from: Measurement(value: radius, unit: UnitLength.meters))
-        return "Radius: \(radiusString)"
+        var message = "Radius: \(radiusString)"
+        if !note.isEmpty {
+            message += ", note: \(note)"
+        }
+        return message
     }
     
     func clampRadius(maxRadius: CLLocationDegrees) {
