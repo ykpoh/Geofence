@@ -80,7 +80,7 @@ class GeofenceViewController: UIViewController, NetworkCheckObserver {
     }
     
     func startMonitoring(geotification: Geotification) {
-        if !(locationManagerType?.isMonitoringAvailable(for: CLCircularRegion.self) ?? true) {
+        if !(locationManagerType?.isMonitoringAvailable(for: CLCircularRegion.self) ?? false) {
             showAlert(
                 withTitle: "Error",
                 message: "Geofencing is not supported on this device!")
