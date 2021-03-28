@@ -19,6 +19,7 @@ class NetworkCheck {
     
     private var monitor = NWPathMonitor(requiredInterfaceType: .wifi)
     private static let _sharedInstance = NetworkCheck()
+    let queue = DispatchQueue(label: "setAndReadObserver", attributes: .concurrent)
     private var observations = [ObjectIdentifier: NetworkChangeObservation]()
     var currentStatus: NWPath.Status {
         get {
@@ -33,16 +34,18 @@ class NetworkCheck {
     init() {
         monitor.pathUpdateHandler = { [weak self] path in
             guard let strongSelf = self else { return }
-            for (id, observations) in strongSelf.observations {
-                // If any observer is nil, remove it from the list of observers
-                guard let observer = observations.observer else {
-                    strongSelf.observations.removeValue(forKey: id)
-                    continue
+            strongSelf.queue.async {
+                for (id, observations) in strongSelf.observations {
+                    // If any observer is nil, remove it from the list of observers
+                    guard let observer = observations.observer else {
+                        strongSelf.observations.removeValue(forKey: id)
+                        continue
+                    }
+                    
+                    DispatchQueue.main.async(execute: {
+                        observer.statusDidChange(status: path.status)
+                    })
                 }
-                
-                DispatchQueue.main.async(execute: {
-                    observer.statusDidChange(status: path.status)
-                })
             }
         }
         monitor.start(queue: DispatchQueue.global(qos: .background))
@@ -50,11 +53,17 @@ class NetworkCheck {
     
     func addObserver(observer: NetworkCheckObserver) {
         let id = ObjectIdentifier(observer)
-        observations[id] = NetworkChangeObservation(observer: observer)
+        queue.async(flags: .barrier) { [weak self] in
+            guard let strongSelf = self else { return }
+            strongSelf.observations[id] = NetworkChangeObservation(observer: observer)
+        }
     }
     
     func removeObserver(observer: NetworkCheckObserver) {
         let id = ObjectIdentifier(observer)
-        observations.removeValue(forKey: id)
+        queue.async(flags: .barrier) { [weak self] in
+            guard let strongSelf = self else { return }
+            strongSelf.observations.removeValue(forKey: id)
+        }
     }
 }
