@@ -17,6 +17,9 @@
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.0" green="0.69019607843137254" blue="0.99607843137254903" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="0Lf-PA-mQN" kind="relationship" relationship="rootViewController" id="fy2-dg-28l"/>
@@ -52,11 +55,13 @@
                     </view>
                     <navigationItem key="navigationItem" title="Geofence" id="Qwf-bF-KvY">
                         <barButtonItem key="leftBarButtonItem" image="location.fill.viewfinder" catalog="system" id="Iy0-wK-Pn4">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="zoomToCurrentLocationWithSender:" destination="0Lf-PA-mQN" id="oMZ-xO-i0T"/>
                             </connections>
                         </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="LAs-rf-oxl">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <segue destination="hXX-DA-whX" kind="presentation" identifier="addGeofence" id="ad2-iA-5wm"/>
                             </connections>
@@ -78,6 +83,9 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="56"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.0" green="0.69019607839999997" blue="0.99607843139999996" alpha="1" colorSpace="calibratedRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
                         <segue destination="Det-6z-rxw" kind="relationship" relationship="rootViewController" id="6IP-mE-tzH"/>
@@ -206,17 +214,20 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Add Geofence" id="YTd-eE-eoM">
                         <barButtonItem key="leftBarButtonItem" title="Cancel" id="dT6-Hm-QTk">
+                            <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             <connections>
                                 <action selector="onCancelWithSender:" destination="Det-6z-rxw" id="sJx-If-GIt"/>
                             </connections>
                         </barButtonItem>
                         <rightBarButtonItems>
                             <barButtonItem systemItem="add" id="8dW-pz-a7k">
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="onAddWithSender:" destination="Det-6z-rxw" id="L6m-mj-uJo"/>
                                 </connections>
                             </barButtonItem>
                             <barButtonItem image="location.fill.viewfinder" catalog="system" id="Yun-JN-WS4" userLabel="CurrentLocation">
+                                <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
                                     <action selector="onZoomToCurrentLocationWithSender:" destination="Det-6z-rxw" id="e23-LD-4aD"/>
                                 </connections>
