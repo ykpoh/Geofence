@@ -21,18 +21,35 @@ class GeofenceViewController: UIViewController, NetworkCheckObserver {
             updateStatus()
         }
     }
-    lazy var locationManager = CLLocationManager()
+    var locationService: UserLocationService?
+    var locationManagerType: UserLocationProvider.Type?
     lazy var networkCheck = NetworkCheck.sharedInstance()
     var isWithinRegion = false
     var isConnectedToSavedWifi = false
     
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        locationManager.delegate = self
-        locationManager.requestAlwaysAuthorization()
+        initialize()
+        locationService?.provider.requestAlwaysAuthorization()
         loadAllGeotifications()
         networkCheck.addObserver(observer: self)
+    }
+    
+    deinit {
+        networkCheck.removeObserver(observer: self)
+    }
+    
+    func initialize(locationManagerType: UserLocationProvider.Type = CLLocationManager.self, locationService: UserLocationService? = nil) {
+        self.locationManagerType = locationManagerType
+        self.locationService = locationService ?? UserLocationService(provider: CLLocationManager()) { [weak self] (authorized, enterRegion, error) in
+            guard let strongSelf = self else { return }
+            strongSelf.locationCompletionBlock(authorized, enterRegion, error)
+        }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -63,7 +80,7 @@ class GeofenceViewController: UIViewController, NetworkCheckObserver {
     }
     
     func startMonitoring(geotification: Geotification) {
-        if !CLLocationManager.isMonitoringAvailable(for: CLCircularRegion.self) {
+        if !(locationManagerType?.isMonitoringAvailable(for: CLCircularRegion.self) ?? true) {
             showAlert(
                 withTitle: "Error",
                 message: "Geofencing is not supported on this device!")
@@ -72,17 +89,18 @@ class GeofenceViewController: UIViewController, NetworkCheckObserver {
         
         let fenceRegion = geotification.region
         
-        locationManager.startMonitoring(for: fenceRegion)
+        locationService?.provider.startMonitoring(for: fenceRegion)
     }
     
     func stopMonitoring(geotification: Geotification) {
-        for region in locationManager.monitoredRegions {
+        guard let monitoredRegions = locationService?.provider.monitoredRegions else { return }
+        for region in monitoredRegions {
             guard
                 let circularRegion = region as? CLCircularRegion,
                 circularRegion.identifier == geotification.identifier
             else { continue }
             
-            locationManager.stopMonitoring(for: circularRegion)
+            locationService?.provider.stopMonitoring(for: circularRegion)
         }
     }
     
@@ -149,28 +167,18 @@ class GeofenceViewController: UIViewController, NetworkCheckObserver {
             }
         }
     }
-}
-
-// MARK: AddGeofenceViewControllerDelegate
-extension GeofenceViewController: AddGeofenceViewControllerDelegate {
-    func addGeofenceViewController(_ controller: AddGeofenceViewController, didAddGeofence geotification: Geotification) {
-        controller.dismiss(animated: true, completion: nil)
-        
-        geotification.clampRadius(maxRadius:
-                                    locationManager.maximumRegionMonitoringDistance)
-        add(geotification)
-        
-        startMonitoring(geotification: geotification)
-        saveAllGeotifications()
+    
+    func locationCompletionBlock(_ authorized: Bool?, _ enterRegion: Bool?, _ error: UserLocationError?) {
+        if let authorized = authorized {
+            locationDidChangeAuthorizationCompletionBlock(authorized)
+        } else if let enterRegion = enterRegion {
+            locationCrossRegionCompletionBlock(enterRegion)
+        } else if let error = error {
+            locationGeneralErrorCompletionBlock(error)
+        }
     }
-}
-
-extension GeofenceViewController: CLLocationManagerDelegate {
-    func locationManagerDidChangeAuthorization(_ manager: CLLocationManager) {
-        let status = manager.authorizationStatus
-        
-        let authorized = status == .authorizedWhenInUse || status == .authorizedAlways
-        
+    
+    func locationDidChangeAuthorizationCompletionBlock(_ authorized: Bool) {
         mapView.showsUserLocation = authorized
         
         if !authorized {
@@ -182,40 +190,35 @@ extension GeofenceViewController: CLLocationManagerDelegate {
         }
     }
     
-    func locationManager(
-        _ manager: CLLocationManager,
-        didEnterRegion region: CLRegion
-    ) {
-        if region is CLCircularRegion {
-            isWithinRegion = true
-            updateStatus()
-        }
+    func locationCrossRegionCompletionBlock(_ enterRegion: Bool) {
+        isWithinRegion = enterRegion
+        updateStatus()
     }
     
-    func locationManager(
-        _ manager: CLLocationManager,
-        didExitRegion region: CLRegion
-    ) {
-        if region is CLCircularRegion {
-            isWithinRegion = false
-            updateStatus()
-        }
-    }
-    
-    func locationManager(
-        _ manager: CLLocationManager,
-        monitoringDidFailFor region: CLRegion?,
-        withError error: Error
-    ) {
-        guard let region = region else {
+    func locationGeneralErrorCompletionBlock(_ error: UserLocationError) {
+        switch error {
+        case .monitorFailedForUnknownRegion:
             showToast("Monitoring failed for unknown region")
-            return
+        case .monitorFailedForRegion(let identifier):
+            showToast("Monitoring failed for region with identifier: \(identifier)")
+        case .locationManagerFailed(let error):
+            showToast("Location Manager failed with the following error: \(error)")
         }
-        showToast("Monitoring failed for region with identifier: \(region.identifier)")
     }
-    
-    func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        showToast("Location Manager failed with the following error: \(error)")
+}
+
+// MARK: AddGeofenceViewControllerDelegate
+extension GeofenceViewController: AddGeofenceViewControllerDelegate {
+    func addGeofenceViewController(_ controller: AddGeofenceViewController, didAddGeofence geotification: Geotification) {
+        controller.dismiss(animated: true, completion: nil)
+        
+        if let maxRadius = locationService?.provider.maximumRegionMonitoringDistance {
+            geotification.clampRadius(maxRadius: maxRadius)
+        }
+        add(geotification)
+        
+        startMonitoring(geotification: geotification)
+        saveAllGeotifications()
     }
 }
 

@@ -22,6 +22,8 @@
 		E8F5194B260B82830021668E /* GeofenceViewControllerTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F5194A260B82830021668E /* GeofenceViewControllerTests.swift */; };
 		E8F5195F260B83C10021668E /* UIViewController+StoryboardCreatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F5195E260B83C10021668E /* UIViewController+StoryboardCreatable.swift */; };
 		E8F51967260B83E60021668E /* StoryboardCreatable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F51966260B83E50021668E /* StoryboardCreatable.swift */; };
+		E8F72B522610513E006E3C69 /* UserLocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F72B512610513E006E3C69 /* UserLocationService.swift */; };
+		E8F72B5726105178006E3C69 /* UserLocationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8F72B5626105178006E3C69 /* UserLocationProvider.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -64,6 +66,8 @@
 		E8F5194A260B82830021668E /* GeofenceViewControllerTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeofenceViewControllerTests.swift; sourceTree = "<group>"; };
 		E8F5195E260B83C10021668E /* UIViewController+StoryboardCreatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIViewController+StoryboardCreatable.swift"; sourceTree = "<group>"; };
 		E8F51966260B83E50021668E /* StoryboardCreatable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardCreatable.swift; sourceTree = "<group>"; };
+		E8F72B512610513E006E3C69 /* UserLocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationService.swift; sourceTree = "<group>"; };
+		E8F72B5626105178006E3C69 /* UserLocationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserLocationProvider.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +159,8 @@
 				E85A4E3C260CC09100C2FAA1 /* Utilities.swift */,
 				E8D20C02260F1EF90060A3C2 /* NetworkCheck.swift */,
 				E8D20C08260F27920060A3C2 /* SSID.swift */,
+				E8F72B512610513E006E3C69 /* UserLocationService.swift */,
+				E8F72B5626105178006E3C69 /* UserLocationProvider.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -290,9 +296,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E8F72B5726105178006E3C69 /* UserLocationProvider.swift in Sources */,
 				E85A4E3D260CC09100C2FAA1 /* Utilities.swift in Sources */,
 				E8D20C03260F1EF90060A3C2 /* NetworkCheck.swift in Sources */,
 				E8D20C09260F27920060A3C2 /* SSID.swift in Sources */,
+				E8F72B522610513E006E3C69 /* UserLocationService.swift in Sources */,
 				E8F51907260B6E410021668E /* AppDelegate.swift in Sources */,
 				E8F5195F260B83C10021668E /* UIViewController+StoryboardCreatable.swift in Sources */,
 				E8D20BE9260EE0630060A3C2 /* Geotification.swift in Sources */,
