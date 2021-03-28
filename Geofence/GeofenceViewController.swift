@@ -48,7 +48,7 @@ class GeofenceViewController: UIViewController, NetworkCheckObserver {
     }
     
     @IBAction func zoomToCurrentLocation(sender: AnyObject) {
-      mapView.zoomToLocation(mapView.userLocation.location)
+        mapView.zoomToLocation(mapView.userLocation.location)
     }
     
     // MARK: Loading and saving functions
@@ -259,4 +259,3 @@ extension GeofenceViewController: MKMapViewDelegate {
         saveAllGeotifications()
     }
 }
-
