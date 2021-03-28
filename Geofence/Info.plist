@@ -24,7 +24,9 @@
 	<string>Geofence requires constant access to your phone’s location to notify you when you enter or leave a geofence.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
 	<string>Geofence requires constant access to your phone’s location to notify you when you enter or leave a geofence.</string>
-	<key>UIApplicationSceneManifest</key>
+    <key>NSLocationAlwaysUsageDescription</key>
+    <string>Geofence requires constant access to your phone’s location to notify you when you enter or leave a geofence.</string>
+    <key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
 		<false/>
