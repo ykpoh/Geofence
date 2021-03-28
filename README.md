@@ -1,6 +1,6 @@
 ## Project information
-Xcode 12.2
-iOS Deployment Target: 14.2
+1. Xcode 12.2
+2. iOS Deployment Target: 14.2
 
 ## Steps to set up
 1. Clone the repository into your local directory.
