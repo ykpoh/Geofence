@@ -31,11 +31,12 @@ class NetworkCheck {
     }
     
     init() {
-        monitor.pathUpdateHandler = { [unowned self] path in
-            for (id, observations) in self.observations {
+        monitor.pathUpdateHandler = { [weak self] path in
+            guard let strongSelf = self else { return }
+            for (id, observations) in strongSelf.observations {
                 // If any observer is nil, remove it from the list of observers
                 guard let observer = observations.observer else {
-                    self.observations.removeValue(forKey: id)
+                    strongSelf.observations.removeValue(forKey: id)
                     continue
                 }
                 
