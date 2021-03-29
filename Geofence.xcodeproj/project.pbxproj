@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E85A4E3D260CC09100C2FAA1 /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = E85A4E3C260CC09100C2FAA1 /* Utilities.swift */; };
+		E8A99DE6260F45C20031860F /* SimulatedLocations.gpx in Resources */ = {isa = PBXBuildFile; fileRef = E8A99DE5260F45C20031860F /* SimulatedLocations.gpx */; };
 		E8D20BE9260EE0630060A3C2 /* Geotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D20BE8260EE0630060A3C2 /* Geotification.swift */; };
 		E8D20BEE260EE44C0060A3C2 /* AddGeofenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D20BED260EE44C0060A3C2 /* AddGeofenceViewController.swift */; };
 		E8D20C03260F1EF90060A3C2 /* NetworkCheck.swift in Sources */ = {isa = PBXBuildFile; fileRef = E8D20C02260F1EF90060A3C2 /* NetworkCheck.swift */; };
@@ -46,6 +47,7 @@
 /* Begin PBXFileReference section */
 		E85A4E3C260CC09100C2FAA1 /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		E8872200260F344200E11FC7 /* Geofence.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Geofence.entitlements; sourceTree = "<group>"; };
+		E8A99DE5260F45C20031860F /* SimulatedLocations.gpx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = SimulatedLocations.gpx; sourceTree = "<group>"; };
 		E8D20BE8260EE0630060A3C2 /* Geotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Geotification.swift; sourceTree = "<group>"; };
 		E8D20BED260EE44C0060A3C2 /* AddGeofenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddGeofenceViewController.swift; sourceTree = "<group>"; };
 		E8D20C02260F1EF90060A3C2 /* NetworkCheck.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkCheck.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 				E8F5190C260B6E410021668E /* Main.storyboard */,
 				E8F5190F260B6E430021668E /* Assets.xcassets */,
 				E8F51911260B6E430021668E /* LaunchScreen.storyboard */,
+				E8A99DE5260F45C20031860F /* SimulatedLocations.gpx */,
 				E8F51914260B6E430021668E /* Info.plist */,
 				E8872200260F344200E11FC7 /* Geofence.entitlements */,
 				E8F51944260B75670021668E /* GeofenceViewController.swift */,
@@ -272,6 +275,7 @@
 				E8F51913260B6E430021668E /* LaunchScreen.storyboard in Resources */,
 				E8F51910260B6E430021668E /* Assets.xcassets in Resources */,
 				E8F5190E260B6E410021668E /* Main.storyboard in Resources */,
+				E8A99DE6260F45C20031860F /* SimulatedLocations.gpx in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
