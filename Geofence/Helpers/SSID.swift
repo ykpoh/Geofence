@@ -8,7 +8,11 @@
 import Foundation
 import SystemConfiguration.CaptiveNetwork
 
-class SSID {
+protocol SSIDProvider {
+    static func getWiFiSSID() -> String?
+}
+
+class SSID: SSIDProvider {
     class func getWiFiSSID() -> String? {
         var ssid: String?
         if let interfaces = CNCopySupportedInterfaces() as NSArray? {

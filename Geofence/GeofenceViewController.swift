@@ -23,7 +23,8 @@ class GeofenceViewController: UIViewController, NetworkCheckObserver {
     }
     var locationService: UserLocationService?
     var locationManagerType: UserLocationProvider.Type?
-    lazy var networkCheck = NetworkCheck.sharedInstance()
+    var reachabilityCheck: ReachabilityCheck?
+    var ssidProvider: SSIDProvider.Type?
     var isWithinRegion = false
     var isConnectedToSavedWifi = false
     
@@ -37,19 +38,21 @@ class GeofenceViewController: UIViewController, NetworkCheckObserver {
         initialize()
         locationService?.provider.requestAlwaysAuthorization()
         loadAllGeotifications()
-        networkCheck.addObserver(observer: self)
+        reachabilityCheck?.addObserver(observer: self)
     }
     
     deinit {
-        networkCheck.removeObserver(observer: self)
+        reachabilityCheck?.removeObserver(observer: self)
     }
     
-    func initialize(locationManagerType: UserLocationProvider.Type = CLLocationManager.self, locationService: UserLocationService? = nil) {
+    func initialize(locationManagerType: UserLocationProvider.Type = CLLocationManager.self, locationService: UserLocationService? = nil, reachabilityCheck: ReachabilityCheck = NetworkCheck.sharedInstance(), ssidProvider: SSIDProvider.Type = SSID.self) {
         self.locationManagerType = locationManagerType
         self.locationService = locationService ?? UserLocationService(provider: CLLocationManager()) { [weak self] (authorized, enterRegion, error) in
             guard let strongSelf = self else { return }
             strongSelf.locationCompletionBlock(authorized, enterRegion, error)
         }
+        self.reachabilityCheck = reachabilityCheck
+        self.ssidProvider = ssidProvider
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -129,8 +132,7 @@ class GeofenceViewController: UIViewController, NetworkCheckObserver {
             updateNavigationBar(title: "Geofence", color: UIColor("#00B0FE"))
             return
         }
-        
-        if let ssid = SSID.getWiFiSSID(), geotifications.contains(where: { $0.wifiName == ssid }) {
+        if let ssid = ssidProvider?.getWiFiSSID(), geotifications.contains(where: { $0.wifiName == ssid }) {
             isConnectedToSavedWifi = true
         } else {
             isConnectedToSavedWifi = false

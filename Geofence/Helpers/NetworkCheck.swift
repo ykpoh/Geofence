@@ -12,7 +12,14 @@ protocol NetworkCheckObserver: class {
     func statusDidChange(status: NWPath.Status)
 }
 
-class NetworkCheck {
+protocol ReachabilityCheck {
+    static func sharedInstance() -> ReachabilityCheck
+    init()
+    func addObserver(observer: NetworkCheckObserver)
+    func removeObserver(observer: NetworkCheckObserver)
+}
+
+class NetworkCheck: ReachabilityCheck {
     struct NetworkChangeObservation {
         weak var observer: NetworkCheckObserver?
     }
@@ -27,11 +34,11 @@ class NetworkCheck {
         }
     }
     
-    class func sharedInstance() -> NetworkCheck {
+    class func sharedInstance() -> ReachabilityCheck {
         return _sharedInstance
     }
     
-    init() {
+    required init() {
         monitor.pathUpdateHandler = { [weak self] path in
             guard let strongSelf = self else { return }
             strongSelf.queue.async {
