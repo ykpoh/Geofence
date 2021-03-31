@@ -60,4 +60,15 @@ extension UserLocationService: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         locationCompletionBlock(nil, nil, .locationManagerFailed(error: error))
     }
+    
+    func locationManager(_ manager: CLLocationManager, didDetermineState state: CLRegionState, for region: CLRegion) {
+        switch state {
+        case .inside:
+            locationCompletionBlock(nil, true, nil)
+        case .outside:
+            locationCompletionBlock(nil, false, nil)
+        default:
+            break
+        }
+    }
 }

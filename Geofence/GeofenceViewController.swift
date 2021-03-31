@@ -11,7 +11,8 @@ import MapKit
 import Network
 
 enum PreferencesKeys: String {
-  case savedItems
+    case savedItems
+    case isWithinRegion
 }
 
 class GeofenceViewController: UIViewController, NetworkCheckObserver {
@@ -25,7 +26,17 @@ class GeofenceViewController: UIViewController, NetworkCheckObserver {
     var locationManagerType: UserLocationProvider.Type?
     var reachabilityCheck: ReachabilityCheck?
     var ssidProvider: SSIDProvider.Type?
-    var isWithinRegion = false
+    var isWithinRegion = false {
+        didSet {
+            let encoder = JSONEncoder()
+            do {
+                let data = try encoder.encode(isWithinRegion)
+                UserDefaults.standard.set(data, forKey: PreferencesKeys.isWithinRegion.rawValue)
+            } catch {
+                print("error encoding isWithinRegion")
+            }
+        }
+    }
     var isConnectedToSavedWifi = false
     
     required init?(coder aDecoder: NSCoder) {
@@ -39,6 +50,12 @@ class GeofenceViewController: UIViewController, NetworkCheckObserver {
         locationService?.provider.requestAlwaysAuthorization()
         loadAllGeotifications()
         reachabilityCheck?.addObserver(observer: self)
+        
+        guard let isWithinRegion = UserDefaults.standard.data(forKey: PreferencesKeys.isWithinRegion.rawValue) else { return }
+        let decoder = JSONDecoder()
+        if let isWithinRegion = try? decoder.decode(Bool.self, from: isWithinRegion) {
+            locationCrossRegionCompletionBlock(isWithinRegion)
+        }
     }
     
     deinit {
@@ -217,9 +234,9 @@ extension GeofenceViewController: AddGeofenceViewControllerDelegate {
         if let maxRadius = locationService?.provider.maximumRegionMonitoringDistance {
             geotification.clampRadius(maxRadius: maxRadius)
         }
-        add(geotification)
         
         startMonitoring(geotification: geotification)
+        add(geotification)
         saveAllGeotifications()
     }
 }
