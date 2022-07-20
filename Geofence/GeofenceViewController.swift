@@ -164,7 +164,18 @@ class GeofenceViewController: UIViewController, NetworkCheckObserver {
     
     func updateNavigationBar(title: String, color: UIColor?) {
         self.title = title
-        navigationController?.navigationBar.barTintColor = color
+        if #available(iOS 13, *) {
+            let apperance = UINavigationBarAppearance()
+            apperance.configureWithDefaultBackground()
+            apperance.backgroundColor = color
+            apperance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+            navigationController?.navigationBar.standardAppearance = apperance
+            navigationController?.navigationBar.scrollEdgeAppearance = apperance
+        }
+        else {
+            navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+            navigationController?.navigationBar.barTintColor = color
+        }
     }
     
     // MARK: Map overlay functions

@@ -23,6 +23,20 @@ class AddGeofenceViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if #available(iOS 13, *) {
+            let apperance = UINavigationBarAppearance()
+            apperance.configureWithDefaultBackground()
+            apperance.backgroundColor = UIColor("#00B0FE")
+            apperance.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+            navigationController?.navigationBar.standardAppearance = apperance
+            navigationController?.navigationBar.scrollEdgeAppearance = apperance
+        }
+        else {
+            navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.foregroundColor: UIColor.white]
+            navigationController?.navigationBar.barTintColor = UIColor("#00B0FE")
+        }
+        
         navigationItem.rightBarButtonItems = [addButton, zoomButton]
         addButton.isEnabled = false
         tableView.backgroundColor = traitCollection.userInterfaceStyle == .dark ? UIColor("#1C1C1E") : .white
