@@ -2,6 +2,11 @@
 1. Xcode 12.2
 2. iOS Deployment Target: 14.2
 
+
+## Walkthrough:
+
+![](Geofence.gif)
+
 ## Steps to set up
 1. Clone the repository into your local directory.
 2. Ensure you opened with **Xcode 12.2 or newer version**.
