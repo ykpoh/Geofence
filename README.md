@@ -3,7 +3,7 @@
 2. iOS Deployment Target: 14.2
 
 
-## Walkthrough:
+## Walkthrough
 
 ![](Geofence.gif)
 
